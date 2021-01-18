@@ -1,0 +1,15 @@
+projects:
+  project14-TodoApp:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: src/graphql
+        region: us-east-1
+        apiId: ehwp4svusje75e3t66ykww5jue
+        maxDepth: 2

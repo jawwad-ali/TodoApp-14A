@@ -1,0 +1,22 @@
+type Event {
+  result: String
+}
+
+type Todo {
+  title: String
+  desc: String
+}
+
+type Query {
+  getTodo: [Todo]
+}
+
+input TodoInput {
+  title: String
+  desc: String
+}
+
+type Mutation {
+  addTodo(todo: TodoInput): Event
+  deleteTodo(id: String): Event
+}

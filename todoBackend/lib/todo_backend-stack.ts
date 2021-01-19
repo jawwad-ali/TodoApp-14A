@@ -5,14 +5,41 @@ import * as appsync from "@aws-cdk/aws-appsync";
 import * as targets from "@aws-cdk/aws-events-targets";
 import { Rule } from "@aws-cdk/aws-events";
 import * as ddb from "@aws-cdk/aws-dynamodb";
+import * as s3 from "@aws-cdk/aws-s3"
+import * as s3deploy from "@aws-cdk/aws-s3-deployment"
+import * as cloudfront from "@aws-cdk/aws-cloudfront"
+import * as origins from '@aws-cdk/aws-cloudfront-origins';
+import { CfnOutput } from '@aws-cdk/core';
 import { requestTemplate, responseTemplate, EVENT_SOURCE } from "../utils/appsync-request-response";
-import { DynamoDB } from 'aws-sdk';
 
 export class TodoBackendStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // The code that defines your stack goes here
+    // create a bucket to upload your app files
+    const websiteBucket = new s3.Bucket(this, "WebsiteBucket", {
+      versioned: true,
+    });
+
+    const distribution = new cloudfront.Distribution(this, "Distribution", {
+      defaultBehavior: {
+        origin: new origins.S3Origin(websiteBucket),
+      },
+      defaultRootObject: "index.html",
+    });
+
+    new cdk.CfnOutput(this, "DomainName", {
+      value: distribution.domainName,
+    });
+
+    new s3deploy.BucketDeployment(this, "DeployWebsite", {
+      sources: [s3deploy.Source.asset("../my-hello-world-starter/public")],
+      destinationBucket: websiteBucket,
+      distribution,
+      distributionPaths: ["/*"],
+    });
+
     // API
     const api = new appsync.GraphqlApi(this, "theApi", {
       name: "project14-TodoApp",

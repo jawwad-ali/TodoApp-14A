@@ -1,0 +1,38 @@
+.data-left-div {
+    width: 90%;
+    margin-top: 12px;
+}
+
+.inner-divs {
+    background: #578cbb;
+}
+
+.main-container {
+    margin-top: 50px;
+}
+
+.data-container {
+    border: 1px solid lightblue;
+    box-sizing: border-box;
+    display: flex;
+    text-align: left;
+    box-shadow: 2px 3px #888888;
+    padding: 15px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.icon-span {
+    font-size: 30px;
+    width: 100px;
+    background: #609ed4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-data-div {
+    width: 290px;
+    text-align: center;
+}

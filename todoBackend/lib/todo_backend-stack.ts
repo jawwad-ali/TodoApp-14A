@@ -10,7 +10,7 @@ import * as s3deploy from "@aws-cdk/aws-s3-deployment"
 import * as cloudfront from "@aws-cdk/aws-cloudfront"
 import * as origins from '@aws-cdk/aws-cloudfront-origins';
 import { CfnOutput } from '@aws-cdk/core';
-import { requestTemplate, responseTemplate, EVENT_SOURCE } from "../utils/appsync-request-response";
+import { requestTemplate, responseTemplate, EVENT_SOURCE } from "../utils/appsync-request-response"; 
 
 export class TodoBackendStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -23,7 +23,7 @@ export class TodoBackendStack extends cdk.Stack {
     });
 
     const distribution = new cloudfront.Distribution(this, "Distribution", {
-      defaultBehavior: {
+      defaultBehavior: { 
         origin: new origins.S3Origin(websiteBucket),
       },
       defaultRootObject: "index.html",

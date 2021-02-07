@@ -7,7 +7,7 @@ const TABLE_NAME = process.env.DYNAMO_TABLE_NAME as string;
 
 exports.handler = async (event: EventBridgeEvent<string, any>, context: Context) => {
     try {
-        if (event["detail-type"] === "addTodo") {
+        if (event["detail-type"] === "addTodo") { 
 
             console.log("detail===>", JSON.stringify(event.detail, null, 2));
 

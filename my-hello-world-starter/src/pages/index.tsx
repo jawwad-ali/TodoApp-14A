@@ -12,7 +12,7 @@ interface Todo {
 
 interface incomingData {
   data: {
-    getTodo: Todo[] 
+    getTodo: Todo[]
   }
 }
 

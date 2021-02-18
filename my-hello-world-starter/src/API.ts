@@ -7,14 +7,25 @@ export type TodoInput = {
   desc?: string | null,
 };
 
+export type Event = {
+  __typename: "Event",
+  result?: string | null,
+};
+
+export type Todo = {
+  __typename: "Todo",
+  title?: string | null,
+  desc?: string | null,
+};
+
 export type AddTodoMutationVariables = {
   todo?: TodoInput | null,
 };
 
 export type AddTodoMutation = {
-  addTodo:  {
+  addTodo?:  {
     __typename: "Event",
-    result: string | null,
+    result?: string | null,
   } | null,
 };
 
@@ -23,16 +34,16 @@ export type DeleteTodoMutationVariables = {
 };
 
 export type DeleteTodoMutation = {
-  deleteTodo:  {
+  deleteTodo?:  {
     __typename: "Event",
-    result: string | null,
+    result?: string | null,
   } | null,
 };
 
 export type GetTodoQuery = {
-  getTodo:  Array< {
+  getTodo?:  Array< {
     __typename: "Todo",
-    title: string | null,
-    desc: string | null,
+    title?: string | null,
+    desc?: string | null,
   } | null > | null,
 };
